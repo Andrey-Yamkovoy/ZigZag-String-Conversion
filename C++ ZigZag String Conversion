@@ -1,0 +1,37 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        std::string ss[numRows];
+    
+       
+        int currentIndex = 0;
+	    int currentRow = 1;
+	    int currentSb = 0;
+	    while(currentIndex < s.length()) {
+		    while(currentRow < numRows && currentIndex < s.length()) {
+			    ss[currentSb] += s[currentIndex];
+			    currentRow++;
+                currentIndex++;
+                currentSb++;
+		    }
+		    while(currentRow > 1 && currentIndex < s.length()){
+			    ss[currentSb] += s[currentIndex];
+                currentRow--;
+                currentIndex++;
+                currentSb--;
+            }
+		    if(numRows == 1) {
+			    ss[currentSb] += s[currentIndex];			 
+                currentIndex++;
+		    }
+		  
+	    }
+	  
+	  for(int i = 1;i < numRows;i++) {
+		 ss[0] += ss[i];
+	  }
+        
+	  return ss[0];
+        
+    }
+};
