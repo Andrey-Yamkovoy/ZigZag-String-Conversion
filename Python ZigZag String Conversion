@@ -1,0 +1,32 @@
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        i = 0
+        sb = []
+        for i in range(0, numRows,1):
+            sb.append("")
+        currentIndex = 0
+        currentRow = 1
+        currentSb = 0
+        while currentIndex <len(s):
+            while currentRow < numRows and currentIndex < len(s):
+			    sb[currentSb] += s[currentIndex]
+			    currentRow+=1
+			    currentIndex+=1
+			    currentSb+=1
+            while currentRow > 1 and currentIndex < len(s):
+			    sb[currentSb] += s[currentIndex]
+			    currentRow-=1
+			    currentIndex+=1
+			    currentSb-=1
+            if numRows == 1:
+			    sb[currentSb] += s[currentIndex]
+			    currentIndex+=1
+        for i in range(1, numRows,1):
+			sb[0] += sb[i]
+        return sb[0]
+        
